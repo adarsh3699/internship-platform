@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – InternBridge</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main id="app">
+    <div class="page" style="padding-top:76px">
+      <div class="dashboard-layout">
+        <div id="sidebar-container"></div>
+        <main class="main-content">
+          
+          <!-- Student Dashboard -->
+          <div id="student-dashboard" style="display:none;">
+            <div class="page-title" id="studentGreeting">Welcome back! 👋</div>
+            <div class="page-subtitle">Your internship journey dashboard</div>
+            <div class="stats-grid">
+              <div class="stat-card stat-card-1"><div class="stat-icon" style="background:rgba(108,99,255,0.15)">📤</div><div class="stat-value" id="appCount">-</div><div class="stat-label">Applications Sent</div></div>
+              <div class="stat-card stat-card-2"><div class="stat-icon" style="background:rgba(0,217,163,0.15)">✅</div><div class="stat-value" id="shortlistCount">-</div><div class="stat-label">Shortlisted</div></div>
+              <div class="stat-card stat-card-3"><div class="stat-icon" style="background:rgba(255,107,107,0.15)">💾</div><div class="stat-value" id="savedCount">-</div><div class="stat-label">Saved</div></div>
+              <div class="stat-card stat-card-4"><div class="stat-icon" style="background:rgba(255,179,71,0.15)">🎯</div><div class="stat-value" id="matchCount">-</div><div class="stat-label">Matches</div></div>
+            </div>
+            
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+              <!-- Profile Completion -->
+              <div class="opp-detail-card">
+                <div class="section-title-small">Profile Strength</div>
+                <div id="profileStrength"></div>
+              </div>
+              <!-- Quick Actions -->
+              <div class="opp-detail-card">
+                <div class="section-title-small">Quick Actions</div>
+                <div style="display:flex;flex-direction:column;gap:0.75rem">
+                  <button class="btn btn-primary" onclick="window.location.href='/opportunities.html'">🔍 Browse Opportunities</button>
+                  <button class="btn btn-secondary" onclick="window.location.href='/opportunities.html?matched=true'">🎯 View My Matches</button>
+                  <button class="btn btn-secondary" onclick="window.location.href='/profile.html'">✏️ Update Profile</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Recent Applications -->
+            <div class="opp-detail-card">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+                <div class="section-title-small" style="margin:0">Recent Applications</div>
+                <button class="btn btn-secondary btn-sm" onclick="window.location.href='/applications.html'">View All</button>
+              </div>
+              <div id="recentApplications"><div class="loading-spinner"><div class="spinner"></div></div></div>
+            </div>
+          </div>
+          
+          <!-- Organization Dashboard -->
+          <div id="org-dashboard" style="display:none;">
+            <div class="page-title">Organization Dashboard 🏢</div>
+            <div class="page-subtitle" id="orgGreeting"></div>
+            <div class="stats-grid">
+              <div class="stat-card stat-card-1"><div class="stat-icon" style="background:rgba(108,99,255,0.15)">📋</div><div class="stat-value" id="postsCount">-</div><div class="stat-label">Active Posts</div></div>
+              <div class="stat-card stat-card-2"><div class="stat-icon" style="background:rgba(0,217,163,0.15)">📤</div><div class="stat-value" id="totalApps">-</div><div class="stat-label">Total Applications</div></div>
+              <div class="stat-card stat-card-3"><div class="stat-icon" style="background:rgba(255,107,107,0.15)">👁️</div><div class="stat-value" id="totalViews">-</div><div class="stat-label">Total Views</div></div>
+              <div class="stat-card stat-card-4"><div class="stat-icon" style="background:rgba(255,179,71,0.15)">✅</div><div class="stat-value" id="selectedCount">-</div><div class="stat-label">Selected</div></div>
+            </div>
+            
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+              <h3>Posted Opportunities</h3>
+              <button class="btn btn-primary btn-sm" onclick="window.location.href='/post-opportunity.html'">+ Post New</button>
+            </div>
+            <div id="orgPosts"><div class="loading-spinner"><div class="spinner"></div></div></div>
+          </div>
+          
+        </main>
+      </div>
+    </div>
+  </main>
+  
+  <div id="footer"></div>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/components.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

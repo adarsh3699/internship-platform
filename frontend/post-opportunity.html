@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Opportunity – InternBridge</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main id="app">
+    <div class="page" style="padding-top:80px;padding-bottom:4rem">
+      <div class="container" style="max-width:800px">
+        <button class="btn btn-secondary btn-sm" onclick="history.back()" style="margin-bottom:1.5rem">← Back</button>
+        <div style="margin-bottom:2rem">
+          <h1 class="page-title">Post an Opportunity</h1>
+          <p class="page-subtitle">Reach talented students for your internship or project</p>
+        </div>
+        <div class="opp-detail-card">
+          <div class="form-group">
+            <label class="form-label">Title <span class="form-required">*</span></label>
+            <input class="form-input" id="postTitle" placeholder="e.g. Frontend Developer Intern">
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Type <span class="form-required">*</span></label>
+              <select class="form-select" id="postType">
+                <option value="">Select Type</option>
+                <option value="internship">Internship</option>
+                <option value="project">Project</option>
+                <option value="part-time">Part-time</option>
+                <option value="freelance">Freelance</option>
+                <option value="research">Research</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Domain <span class="form-required">*</span></label>
+              <select class="form-select" id="postDomain">
+                <option value="">Select Domain</option>
+                <option>Technology</option><option>Design</option><option>Marketing</option>
+                <option>Finance</option><option>Data Science</option><option>Research</option>
+                <option>Healthcare</option><option>Education</option><option>Business</option>
+                <option>Content</option><option>Engineering</option><option>Legal</option>
+                <option>Human Resources</option><option>Operations</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description <span class="form-required">*</span></label>
+            <textarea class="form-textarea" id="postDesc" placeholder="Describe the opportunity, what students will work on, team culture..." style="min-height:160px"></textarea>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Required Skills <span class="form-required">*</span></label>
+              <input class="form-input" id="postSkills" placeholder="React.js, Python, Figma (comma-separated)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location <span class="form-required">*</span></label>
+              <input class="form-input" id="postLocation" placeholder="Mumbai, India or Remote">
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Work Mode <span class="form-required">*</span></label>
+              <select class="form-select" id="postMode">
+                <option value="">Select Mode</option>
+                <option value="remote">Remote</option>
+                <option value="onsite">On-site</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Number of Openings</label>
+              <input class="form-input" id="postOpenings" type="number" min="1" value="1">
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Duration <span class="form-required">*</span></label>
+              <div style="display:flex;gap:0.5rem">
+                <input class="form-input" id="postDurVal" type="number" min="1" placeholder="3" style="width:80px">
+                <select class="form-select" id="postDurUnit">
+                  <option value="months">Months</option>
+                  <option value="weeks">Weeks</option>
+                  <option value="days">Days</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Application Deadline <span class="form-required">*</span></label>
+              <input class="form-input" id="postDeadline" type="date">
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Paid Internship?</label>
+              <select class="form-select" id="postPaid" onchange="toggleStipend()">
+                <option value="false">No – Unpaid</option>
+                <option value="true">Yes – Paid</option>
+              </select>
+            </div>
+            <div class="form-group" id="stipendGroup" style="display:none">
+              <label class="form-label">Monthly Stipend (₹)</label>
+              <input class="form-input" id="postStipend" type="number" placeholder="15000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Requirements</label>
+            <textarea class="form-textarea" id="postReq" placeholder="Degree requirements, experience level, language..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Responsibilities</label>
+            <textarea class="form-textarea" id="postResp" placeholder="Key tasks and deliverables for the role..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Perks & Benefits</label>
+            <input class="form-input" id="postPerks" placeholder="Certificate, Letter of Recommendation, PPO, Flexible hours (comma-separated)">
+          </div>
+          <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" id="postBtn" onclick="handlePostOpportunity()">🚀 Post Opportunity</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <div id="footer"></div>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/components.js"></script>
+  <script src="/js/post-opportunity.js"></script>
+</body>
+</html>
