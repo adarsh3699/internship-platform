@@ -1,12 +1,12 @@
 /* ===== COMPONENTS ===== */
 
 function renderNavbar() {
-  const user = api.getUser();
-  const isLoggedIn = !!api.getToken();
-  const nav = document.getElementById('navbar');
-  if(!nav) return;
+    const user = api.getUser();
+    const isLoggedIn = !!api.getToken();
+    const nav = document.getElementById("navbar");
+    if (!nav) return;
 
-  nav.innerHTML = `
+    nav.innerHTML = `
     <nav class="navbar" id="mainNavbar">
       <div class="container">
         <div class="nav-content">
@@ -17,23 +17,30 @@ function renderNavbar() {
           <ul class="nav-links" id="navLinks">
             <li><a href="/" class="nav-link">Home</a></li>
             <li><a href="/opportunities.html" class="nav-link">Browse</a></li>
-            ${isLoggedIn ? `
+            ${
+                isLoggedIn
+                    ? `
               <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
-              ${user?.role === 'organization' ? `<li><a href="/post-opportunity.html" class="nav-link">Post Job</a></li>` : ''}
-            ` : ''}
+              ${user?.role === "organization" ? `<li><a href="/post-opportunity.html" class="nav-link">Post Job</a></li>` : ""}
+            `
+                    : ""
+            }
           </ul>
           <div class="nav-actions" id="navActions">
-            ${isLoggedIn ? `
-              <div class="nav-user" id="navUserMenu">
-                <div class="nav-avatar">${(user?.name || 'U')[0].toUpperCase()}</div>
-                <span class="nav-user-name">${user?.name?.split(' ')[0] || 'User'}</span>
-                <span>▾</span>
-              </div>
+            ${
+                isLoggedIn
+                    ? `
+              <a class="nav-user" id="navUserMenu" href="/profile.html">
+                <div class="nav-avatar">${(user?.name || "U")[0].toUpperCase()}</div>
+                <span class="nav-user-name">${user?.name?.split(" ")[0] || "User"}</span>
+              </a>
               <button class="btn btn-secondary btn-sm" onclick="logout()">Sign Out</button>
-            ` : `
+            `
+                    : `
               <button class="btn btn-secondary btn-sm" onclick="window.location.href='/login.html'">Sign In</button>
               <button class="btn btn-primary btn-sm" onclick="window.location.href='/register.html'">Get Started</button>
-            `}
+            `
+            }
           </div>
           <div class="hamburger" onclick="toggleMobileMenu()">
             <span></span><span></span><span></span>
@@ -43,38 +50,43 @@ function renderNavbar() {
     </nav>
   `;
 
-  // Sticky class
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('mainNavbar');
-    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
-  });
+    // Sticky class
+    window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("mainNavbar");
+        if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 20);
+    });
 
-  // Active link
-  const links = nav.querySelectorAll('.nav-links a');
-  links.forEach(link => {
-    if (link.getAttribute('href') === window.location.pathname || link.getAttribute('href') === window.location.pathname.replace('.html', '')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
+    // Active link
+    const links = nav.querySelectorAll(".nav-links a");
+    links.forEach((link) => {
+        if (
+            link.getAttribute("href") === window.location.pathname ||
+            link.getAttribute("href") ===
+                window.location.pathname.replace(".html", "")
+        ) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
 }
 
 function toggleMobileMenu() {
-  const links = document.getElementById('navLinks');
-  if (links) links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    const links = document.getElementById("navLinks");
+    if (links)
+        links.style.display = links.style.display === "flex" ? "none" : "flex";
 }
 
 function logout() {
-  api.clearAuth();
-  toast.info('Signed out successfully');
-  window.location.href = '/';
+    api.clearAuth();
+    toast.info("Signed out successfully");
+    window.location.href = "/";
 }
 
 function renderFooter() {
-  const footer = document.getElementById('footer');
-  if(!footer) return;
-  footer.innerHTML = `
+    const footer = document.getElementById("footer");
+    if (!footer) return;
+    footer.innerHTML = `
     <footer>
       <div class="container">
         <div class="footer-grid">
@@ -118,12 +130,21 @@ function renderFooter() {
 }
 
 function renderOpportunityCard(opp, matchScore = null) {
-  const org = opp.organization || {};
-  const orgName = org.companyName || org.name || 'Organization';
-  const daysLeft = Math.ceil((new Date(opp.applicationDeadline) - new Date()) / (1000 * 60 * 60 * 24));
-  const deadlineText = daysLeft < 0 ? 'Deadline passed' : daysLeft === 0 ? 'Last day!' : `${daysLeft} days left`;
-  const deadlineColor = daysLeft <= 3 ? 'color:var(--rose)' : 'color:var(--text-3)';
-  return `
+    const org = opp.organization || {};
+    const orgName = org.companyName || org.name || "Organization";
+    const daysLeft = Math.ceil(
+        (new Date(opp.applicationDeadline) - new Date()) /
+            (1000 * 60 * 60 * 24),
+    );
+    const deadlineText =
+        daysLeft < 0
+            ? "Deadline passed"
+            : daysLeft === 0
+              ? "Last day!"
+              : `${daysLeft} days left`;
+    const deadlineColor =
+        daysLeft <= 3 ? "color:var(--rose)" : "color:var(--text-3)";
+    return `
     <div class="opportunity-card" onclick="window.location.href='/opportunity-detail.html?id=${opp._id}'">
       <div class="opp-card-header">
         <div class="opp-org-info">
@@ -138,18 +159,21 @@ function renderOpportunityCard(opp, matchScore = null) {
       <div class="opp-tags">
         <span class="hero-card-tag tag-${opp.type}">${capitalize(opp.type)}</span>
         <span class="hero-card-tag tag-${opp.mode}">${capitalize(opp.mode)}</span>
-        ${matchScore ? `<span class="match-pill">🎯 ${matchScore}% match</span>` : ''}
-        ${opp.skills?.slice(0,3).map(s => `<span class="skill-tag">${s}</span>`).join('')}
-        ${opp.skills?.length > 3 ? `<span class="skill-tag">+${opp.skills.length - 3}</span>` : ''}
+        ${matchScore ? `<span class="match-pill">🎯 ${matchScore}% match</span>` : ""}
+        ${opp.skills
+            ?.slice(0, 3)
+            .map((s) => `<span class="skill-tag">${s}</span>`)
+            .join("")}
+        ${opp.skills?.length > 3 ? `<span class="skill-tag">+${opp.skills.length - 3}</span>` : ""}
       </div>
       <div class="opp-meta">
         <div class="opp-meta-item">📍 ${opp.location}</div>
         <div class="opp-meta-item">⏱️ ${opp.duration?.value} ${opp.duration?.unit}</div>
         <div class="opp-meta-item">🏷️ ${opp.domain}</div>
-        ${opp.openings ? `<div class="opp-meta-item">👥 ${opp.openings} opening${opp.openings>1?'s':''}</div>` : ''}
+        ${opp.openings ? `<div class="opp-meta-item">👥 ${opp.openings} opening${opp.openings > 1 ? "s" : ""}</div>` : ""}
       </div>
       <div class="opp-card-footer">
-        <div class="stipend-badge">${opp.stipend?.isPaid ? `₹${opp.stipend.amount?.toLocaleString()}/mo` : 'Unpaid'}</div>
+        <div class="stipend-badge">${opp.stipend?.isPaid ? `₹${opp.stipend.amount?.toLocaleString()}/mo` : "Unpaid"}</div>
         <div class="deadline-text" style="${deadlineColor}">⏰ ${deadlineText}</div>
       </div>
     </div>
@@ -157,34 +181,40 @@ function renderOpportunityCard(opp, matchScore = null) {
 }
 
 async function handleSave(e, oppId, btn) {
-  e.stopPropagation();
-  if (!api.getToken()) { toast.info('Sign in to save opportunities'); window.location.href='/login.html'; return; }
-  try {
-    const data = await api.post(`/opportunities/${oppId}/save`);
-    btn.textContent = data.saved ? '★' : '☆';
-    btn.classList.toggle('saved', data.saved);
-    toast.success(data.message);
-  } catch (err) { toast.error(err.message); }
+    e.stopPropagation();
+    if (!api.getToken()) {
+        toast.info("Sign in to save opportunities");
+        window.location.href = "/login.html";
+        return;
+    }
+    try {
+        const data = await api.post(`/opportunities/${oppId}/save`);
+        btn.textContent = data.saved ? "★" : "☆";
+        btn.classList.toggle("saved", data.saved);
+        toast.success(data.message);
+    } catch (err) {
+        toast.error(err.message);
+    }
 }
 
 function renderSidebar(role) {
-  const studentLinks = `
-    <li><a href="/dashboard.html" class="${location.pathname.includes('/dashboard') ? 'active':''}"><span class="nav-icon">🏠</span>Overview</a></li>
-    <li><a href="/opportunities.html" class="${location.pathname.includes('/opportunities') ? 'active':''}"><span class="nav-icon">🔍</span>Browse</a></li>
-    <li><a href="/applications.html" class="${location.pathname.includes('/applications') ? 'active':''}"><span class="nav-icon">📤</span>Applications</a></li>
-    <li><a href="/saved.html" class="${location.pathname.includes('/saved') ? 'active':''}"><span class="nav-icon">💾</span>Saved</a></li>
-    <li><a href="/profile.html" class="${location.pathname.includes('/profile') ? 'active':''}"><span class="nav-icon">👤</span>Profile</a></li>
+    const studentLinks = `
+    <li><a href="/dashboard.html" class="${location.pathname.includes("/dashboard") ? "active" : ""}"><span class="nav-icon">🏠</span>Overview</a></li>
+    <li><a href="/opportunities.html" class="${location.pathname.includes("/opportunities") ? "active" : ""}"><span class="nav-icon">🔍</span>Browse</a></li>
+    <li><a href="/applications.html" class="${location.pathname.includes("/applications") ? "active" : ""}"><span class="nav-icon">📤</span>Applications</a></li>
+    <li><a href="/saved.html" class="${location.pathname.includes("/saved") ? "active" : ""}"><span class="nav-icon">💾</span>Saved</a></li>
+    <li><a href="/profile.html" class="${location.pathname.includes("/profile") ? "active" : ""}"><span class="nav-icon">👤</span>Profile</a></li>
   `;
-  const orgLinks = `
-    <li><a href="/dashboard.html" class="${location.pathname.includes('/dashboard') ? 'active':''}"><span class="nav-icon">🏠</span>Overview</a></li>
-    <li><a href="/post-opportunity.html" class="${location.pathname.includes('/post-opportunity') ? 'active':''}"><span class="nav-icon">➕</span>Post Opportunity</a></li>
-    <li><a href="/profile.html" class="${location.pathname.includes('/profile') ? 'active':''}"><span class="nav-icon">🏢</span>Company Profile</a></li>
+    const orgLinks = `
+    <li><a href="/dashboard.html" class="${location.pathname.includes("/dashboard") ? "active" : ""}"><span class="nav-icon">🏠</span>Overview</a></li>
+    <li><a href="/post-opportunity.html" class="${location.pathname.includes("/post-opportunity") ? "active" : ""}"><span class="nav-icon">➕</span>Post Opportunity</a></li>
+    <li><a href="/profile.html" class="${location.pathname.includes("/profile") ? "active" : ""}"><span class="nav-icon">🏢</span>Company Profile</a></li>
   `;
-  return `
+    return `
     <aside class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-label">Main</div>
-        <ul class="sidebar-nav">${role === 'student' ? studentLinks : orgLinks}</ul>
+        <ul class="sidebar-nav">${role === "student" ? studentLinks : orgLinks}</ul>
       </div>
       <div class="sidebar-section" style="margin-top:auto">
         <ul class="sidebar-nav">
@@ -195,7 +225,7 @@ function renderSidebar(role) {
   `;
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
     renderNavbar();
     renderFooter();
 });
