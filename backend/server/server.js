@@ -54,20 +54,22 @@ app.get("{*path}", (req, res) => {
     res.sendFile(path.join(__dirname, "../../frontend/index.html"));
 });
 
-// Connect to MongoDB and start server
-const PORT = process.env.PORT || 4000;
-
+// Connect to MongoDB
 mongoose
     .connect(process.env.MONGODB_URI)
     .then(() => {
         console.log("✅ MongoDB Connected");
-        app.listen(PORT, () => {
-            console.log(`🚀 Server running on http://localhost:${PORT}`);
-        });
     })
     .catch((err) => {
         console.error("❌ MongoDB Connection Error:", err.message);
-        process.exit(1);
     });
+
+// Start server only if not running on Vercel
+if (!process.env.VERCEL) {
+    const PORT = process.env.PORT || 4000;
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+}
 
 module.exports = app;
