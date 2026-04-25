@@ -1,94 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Browse Opportunities – InternBridge</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <div id="navbar"></div>
-  <main id="app">
-    <div class="page" style="padding-top:80px;min-height:100vh">
-      <div class="container" style="padding-top:2rem;padding-bottom:4rem">
-        <div style="margin-bottom:1.5rem">
-          <h1 class="page-title">Browse Opportunities</h1>
-          <p class="page-subtitle">Discover internships, projects, and more</p>
-        </div>
-        <div class="filter-bar">
-          <div class="filter-group" style="flex:3;min-width:240px">
-            <label class="filter-label">Search</label>
-            <div class="search-input-wrap" style="width: 100%;">
-              <span class="search-icon">🔍</span>
-              <input class="filter-input" id="searchInput" placeholder="Job title, skills, keywords..." style="padding-left:2.2rem; width: 100%; box-sizing: border-box;">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Browse Opportunities – InternBridge</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"
+        />
+        <link rel="stylesheet" href="/css/styles.css" />
+    </head>
+    <body>
+        <div id="navbar"></div>
+        <main id="app">
+            <div class="page" style="padding-top: 80px; min-height: 100vh">
+                <div
+                    class="container"
+                    style="padding-top: 2rem; padding-bottom: 4rem"
+                >
+                    <div style="margin-bottom: 1.5rem">
+                        <h1 class="page-title">Browse Opportunities</h1>
+                        <p class="page-subtitle">
+                            Discover internships, projects, and more
+                        </p>
+                    </div>
+                    <div class="filter-bar">
+                        <div
+                            class="filter-group"
+                            style="flex: 3; min-width: 240px"
+                        >
+                            <label class="filter-label">Search</label>
+                            <div class="search-input-wrap" style="width: 100%">
+                                <span class="search-icon">🔍</span>
+                                <input
+                                    class="filter-input"
+                                    id="searchInput"
+                                    placeholder="Job title, skills, keywords..."
+                                    style="
+                                        padding-left: 2.2rem;
+                                        width: 100%;
+                                        box-sizing: border-box;
+                                    "
+                                />
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Type</label>
+                            <select class="filter-select" id="typeFilter">
+                                <option value="">All Types</option>
+                                <option value="internship">Internship</option>
+                                <option value="project">Project</option>
+                                <option value="part-time">Part-time</option>
+                                <option value="freelance">Freelance</option>
+                                <option value="research">Research</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Domain</label>
+                            <select class="filter-select" id="domainFilter">
+                                <option value="">All Domains</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Design">Design</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Data Science">
+                                    Data Science
+                                </option>
+                                <option value="Research">Research</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Education">Education</option>
+                                <option value="Business">Business</option>
+                                <option value="Content">Content</option>
+                                <option value="Engineering">Engineering</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Mode</label>
+                            <select class="filter-select" id="modeFilter">
+                                <option value="">All Modes</option>
+                                <option value="remote">Remote</option>
+                                <option value="onsite">On-site</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Sort</label>
+                            <select class="filter-select" id="sortFilter">
+                                <option value="-createdAt">Newest First</option>
+                                <option value="createdAt">Oldest First</option>
+                                <option value="-views">Most Viewed</option>
+                                <option value="applicationDeadline">
+                                    Deadline Soon
+                                </option>
+                            </select>
+                        </div>
+                        <button
+                            class="btn btn-primary"
+                            onclick="applyFilters()"
+                        >
+                            Apply Filters
+                        </button>
+                        <button
+                            class="btn btn-secondary"
+                            onclick="clearFilters()"
+                        >
+                            Clear
+                        </button>
+                    </div>
+
+                    <div
+                        id="studentFilters"
+                        style="display: none; gap: 1rem; margin-bottom: 1.5rem"
+                    >
+                        <button
+                            class="btn btn-secondary btn-sm"
+                            id="btnAll"
+                            onclick="loadAllOpps()"
+                        >
+                            All Opportunities
+                        </button>
+                        <button
+                            class="btn btn-outline btn-sm"
+                            id="btnMatched"
+                            onclick="loadMatchedOpps()"
+                        >
+                            🎯 My Matches
+                        </button>
+                    </div>
+
+                    <div id="oppResults" style="min-height: 300px">
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                    <div class="pagination" id="pagination"></div>
+                </div>
             </div>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">Type</label>
-            <select class="filter-select" id="typeFilter">
-              <option value="">All Types</option>
-              <option value="internship">Internship</option>
-              <option value="project">Project</option>
-              <option value="part-time">Part-time</option>
-              <option value="freelance">Freelance</option>
-              <option value="research">Research</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">Domain</label>
-            <select class="filter-select" id="domainFilter">
-              <option value="">All Domains</option>
-              <option value="Technology">Technology</option>
-              <option value="Design">Design</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Finance">Finance</option>
-              <option value="Data Science">Data Science</option>
-              <option value="Research">Research</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Education">Education</option>
-              <option value="Business">Business</option>
-              <option value="Content">Content</option>
-              <option value="Engineering">Engineering</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">Mode</label>
-            <select class="filter-select" id="modeFilter">
-              <option value="">All Modes</option>
-              <option value="remote">Remote</option>
-              <option value="onsite">On-site</option>
-              <option value="hybrid">Hybrid</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">Sort</label>
-            <select class="filter-select" id="sortFilter">
-              <option value="-createdAt">Newest First</option>
-              <option value="createdAt">Oldest First</option>
-              <option value="-views">Most Viewed</option>
-              <option value="applicationDeadline">Deadline Soon</option>
-            </select>
-          </div>
-          <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
-          <button class="btn btn-secondary" onclick="clearFilters()">Clear</button>
-        </div>
+        </main>
 
-        <div id="studentFilters" style="display:none;gap:1rem;margin-bottom:1.5rem">
-          <button class="btn btn-secondary btn-sm" id="btnAll" onclick="loadAllOpps()">All Opportunities</button>
-          <button class="btn btn-outline btn-sm" id="btnMatched" onclick="loadMatchedOpps()">🎯 My Matches</button>
-        </div>
+        <div id="footer"></div>
 
-        <div id="oppResults" style="min-height:300px"><div class="loading-spinner"><div class="spinner"></div></div></div>
-        <div class="pagination" id="pagination"></div>
-      </div>
-    </div>
-  </main>
-  
-  <div id="footer"></div>
-  
-  <script src="/js/api.js"></script>
-  <script src="/js/components.js"></script>
-  <script src="/js/opportunities.js"></script>
-</body>
+        <script src="/js/api.js"></script>
+        <script src="/js/components.js"></script>
+        <script src="/js/opportunities.js"></script>
+    </body>
 </html>

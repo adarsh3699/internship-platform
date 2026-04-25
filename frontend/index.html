@@ -1,152 +1,441 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InternBridge – Find Your Perfect Internship & Project</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <div id="navbar"></div>
-  
-  <!-- Main App -->
-  <main id="app">
-    <div class="page">
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container">
-          <div class="hero-grid">
-            <div class="hero-left">
-              <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> Find your next opportunity</div>
-              <h1 class="hero-title">
-                Where students meet<br>
-                <em>meaningful work</em>
-              </h1>
-              <p class="hero-desc">Browse internships, live projects, and research roles from verified organizations. Apply with a single profile and track everything in one place.</p>
-              <div class="hero-actions">
-                <button class="btn btn-primary btn-lg" onclick="window.location.href='/opportunities.html'">Browse Opportunities</button>
-                <button class="btn btn-secondary btn-lg" onclick="window.location.href='/register.html'">Create Free Account</button>
-              </div>
-              <div class="hero-stats" id="heroStats">
-                <div class="hero-stat"><div class="hero-stat-value" id="statStudents">--</div><div class="hero-stat-label">Students registered</div></div>
-                <div class="hero-stat"><div class="hero-stat-value" id="statOrgs">--</div><div class="hero-stat-label">Organizations</div></div>
-                <div class="hero-stat"><div class="hero-stat-value" id="statOpps">--</div><div class="hero-stat-label">Open roles</div></div>
-              </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>InternBridge – Find Your Perfect Internship & Project</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"
+        />
+        <link rel="stylesheet" href="/css/styles.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <div id="navbar"></div>
+
+        <!-- Main App -->
+        <main id="app">
+            <div class="page">
+                <!-- HERO -->
+                <section class="hero">
+                    <div class="container">
+                        <div class="hero-grid">
+                            <div class="hero-left">
+                                <div class="hero-eyebrow">
+                                    <span class="hero-eyebrow-dot"></span> Find
+                                    your next opportunity
+                                </div>
+                                <h1 class="hero-title">
+                                    Where students meet<br />
+                                    <em>meaningful work</em>
+                                </h1>
+                                <p class="hero-desc">
+                                    Browse internships, live projects, and
+                                    research roles from verified organizations.
+                                    Apply with a single profile and track
+                                    everything in one place.
+                                </p>
+                                <div class="hero-actions">
+                                    <button
+                                        class="btn btn-primary btn-lg"
+                                        onclick="
+                                            window.location.href =
+                                                '/opportunities.html'
+                                        "
+                                    >
+                                        Browse Opportunities
+                                    </button>
+                                    <button
+                                        class="btn btn-secondary btn-lg"
+                                        onclick="
+                                            window.location.href =
+                                                '/register.html'
+                                        "
+                                    >
+                                        Create Free Account
+                                    </button>
+                                </div>
+                                <div class="hero-stats" id="heroStats">
+                                    <div class="hero-stat">
+                                        <div
+                                            class="hero-stat-value"
+                                            id="statStudents"
+                                        >
+                                            --
+                                        </div>
+                                        <div class="hero-stat-label">
+                                            Students registered
+                                        </div>
+                                    </div>
+                                    <div class="hero-stat">
+                                        <div
+                                            class="hero-stat-value"
+                                            id="statOrgs"
+                                        >
+                                            --
+                                        </div>
+                                        <div class="hero-stat-label">
+                                            Organizations
+                                        </div>
+                                    </div>
+                                    <div class="hero-stat">
+                                        <div
+                                            class="hero-stat-value"
+                                            id="statOpps"
+                                        >
+                                            --
+                                        </div>
+                                        <div class="hero-stat-label">
+                                            Open roles
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hero-visual">
+                                <div class="hero-card-stack">
+                                    <div class="hero-floating-card">
+                                        <div class="hero-card-header">
+                                            <div
+                                                class="hero-card-icon feature-icon-1"
+                                            >
+                                                💻
+                                            </div>
+                                            <div>
+                                                <div
+                                                    style="
+                                                        font-size: 0.76rem;
+                                                        color: var(--text-4);
+                                                        margin-bottom: 0.15rem;
+                                                    "
+                                                >
+                                                    TechCorp Solutions
+                                                </div>
+                                                <div
+                                                    style="
+                                                        font-weight: 600;
+                                                        font-size: 0.92rem;
+                                                        color: var(--text);
+                                                    "
+                                                >
+                                                    Frontend Developer Intern
+                                                </div>
+                                            </div>
+                                            <span class="match-pill"
+                                                >95% match</span
+                                            >
+                                        </div>
+                                        <div
+                                            style="
+                                                display: flex;
+                                                gap: 0.4rem;
+                                                flex-wrap: wrap;
+                                            "
+                                        >
+                                            <span
+                                                class="hero-card-tag tag-internship"
+                                                >Internship</span
+                                            >
+                                            <span
+                                                class="hero-card-tag tag-remote"
+                                                >Remote</span
+                                            >
+                                            <span class="skill-tag"
+                                                >React.js</span
+                                            >
+                                            <span class="skill-tag"
+                                                >Node.js</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="hero-floating-card">
+                                        <div class="hero-card-header">
+                                            <div
+                                                class="hero-card-icon feature-icon-2"
+                                            >
+                                                📊
+                                            </div>
+                                            <div>
+                                                <div
+                                                    style="
+                                                        font-size: 0.76rem;
+                                                        color: var(--text-4);
+                                                        margin-bottom: 0.15rem;
+                                                    "
+                                                >
+                                                    Analytics Hub
+                                                </div>
+                                                <div
+                                                    style="
+                                                        font-weight: 600;
+                                                        font-size: 0.92rem;
+                                                        color: var(--text);
+                                                    "
+                                                >
+                                                    Data Science Project
+                                                </div>
+                                            </div>
+                                            <span class="match-pill"
+                                                >88% match</span
+                                            >
+                                        </div>
+                                        <div
+                                            style="
+                                                display: flex;
+                                                gap: 0.4rem;
+                                                flex-wrap: wrap;
+                                            "
+                                        >
+                                            <span
+                                                class="hero-card-tag tag-project"
+                                                >Project</span
+                                            >
+                                            <span
+                                                class="hero-card-tag tag-hybrid"
+                                                >Hybrid</span
+                                            >
+                                            <span class="skill-tag"
+                                                >Python</span
+                                            >
+                                            <span class="skill-tag">ML</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-floating-card">
+                                        <div class="hero-card-header">
+                                            <div
+                                                class="hero-card-icon feature-icon-3"
+                                            >
+                                                🎨
+                                            </div>
+                                            <div>
+                                                <div
+                                                    style="
+                                                        font-size: 0.76rem;
+                                                        color: var(--text-4);
+                                                        margin-bottom: 0.15rem;
+                                                    "
+                                                >
+                                                    CreativeStudio
+                                                </div>
+                                                <div
+                                                    style="
+                                                        font-weight: 600;
+                                                        font-size: 0.92rem;
+                                                        color: var(--text);
+                                                    "
+                                                >
+                                                    UI/UX Design Internship
+                                                </div>
+                                            </div>
+                                            <span class="match-pill"
+                                                >82% match</span
+                                            >
+                                        </div>
+                                        <div
+                                            style="
+                                                display: flex;
+                                                gap: 0.4rem;
+                                                flex-wrap: wrap;
+                                            "
+                                        >
+                                            <span
+                                                class="hero-card-tag tag-internship"
+                                                >Internship</span
+                                            >
+                                            <span
+                                                class="hero-card-tag tag-onsite"
+                                                >On-site</span
+                                            >
+                                            <span class="skill-tag">Figma</span>
+                                            <span class="skill-tag"
+                                                >Adobe XD</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FEATURES -->
+                <section class="section" style="background: var(--bg-alt)">
+                    <div class="container">
+                        <div class="section-header">
+                            <div class="section-badge">What you get</div>
+                            <h2 class="section-title">
+                                Built for how students actually work
+                            </h2>
+                            <p class="section-desc">
+                                Every feature was designed around a real student
+                                need — from first browse to first day.
+                            </p>
+                        </div>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon feature-icon-1">
+                                    🎯
+                                </div>
+                                <div class="feature-title">
+                                    Skill-based matching
+                                </div>
+                                <div class="feature-desc">
+                                    Add your skills once. Get a ranked list of
+                                    opportunities that actually fit.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon feature-icon-2">
+                                    🏢
+                                </div>
+                                <div class="feature-title">
+                                    Trusted organizations
+                                </div>
+                                <div class="feature-desc">
+                                    Work with companies and institutes that have
+                                    been verified.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon feature-icon-3">
+                                    📋
+                                </div>
+                                <div class="feature-title">
+                                    5 opportunity types
+                                </div>
+                                <div class="feature-desc">
+                                    Internships, projects, freelance, part-time,
+                                    and research.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon feature-icon-4">
+                                    📬
+                                </div>
+                                <div class="feature-title">
+                                    One-profile applying
+                                </div>
+                                <div class="feature-desc">
+                                    Fill your profile once. Apply to any
+                                    opportunity easily.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon feature-icon-5">
+                                    📈
+                                </div>
+                                <div class="feature-title">
+                                    Application tracking
+                                </div>
+                                <div class="feature-desc">
+                                    See every application you've sent and its
+                                    current status.
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon feature-icon-6">
+                                    🌐
+                                </div>
+                                <div class="feature-title">
+                                    Remote & hybrid roles
+                                </div>
+                                <div class="feature-desc">
+                                    Filter by work mode. Remote, hybrid,
+                                    on-site.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- HOW IT WORKS -->
+                <section
+                    class="section"
+                    style="border-top: 1px solid var(--border)"
+                >
+                    <div class="container">
+                        <div class="section-header">
+                            <div class="section-badge">How it works</div>
+                            <h2 class="section-title">
+                                From sign-up to first day in three steps
+                            </h2>
+                        </div>
+                        <div class="steps-grid">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Build your profile</div>
+                                <div class="step-desc">
+                                    Add your skills, education, and what you're
+                                    looking for.
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="step-title">
+                                    Browse or get matched
+                                </div>
+                                <div class="step-desc">
+                                    Use filters to explore, or check your
+                                    personal match list.
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Apply and track</div>
+                                <div class="step-desc">
+                                    Send your application with a cover note.
+                                    Watch the status update.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LATEST OPPORTUNITIES -->
+                <section
+                    class="section"
+                    style="
+                        background: var(--bg-alt);
+                        border-top: 1px solid var(--border);
+                    "
+                >
+                    <div class="container">
+                        <div class="section-header">
+                            <div class="section-badge">Recently posted</div>
+                            <h2 class="section-title">Latest openings</h2>
+                            <p class="section-desc">
+                                Freshly posted internships and projects from
+                                active organizations
+                            </p>
+                        </div>
+                        <div
+                            class="opportunities-grid"
+                            id="latestOpportunities"
+                        >
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem">
+                            <button
+                                class="btn btn-outline btn-lg"
+                                onclick="
+                                    window.location.href = '/opportunities.html'
+                                "
+                            >
+                                View all opportunities
+                            </button>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="hero-visual">
-              <div class="hero-card-stack">
-                <div class="hero-floating-card">
-                  <div class="hero-card-header">
-                    <div class="hero-card-icon feature-icon-1">💻</div>
-                    <div>
-                      <div style="font-size:0.76rem;color:var(--text-4);margin-bottom:0.15rem">TechCorp Solutions</div>
-                      <div style="font-weight:600;font-size:0.92rem;color:var(--text)">Frontend Developer Intern</div>
-                    </div>
-                    <span class="match-pill">95% match</span>
-                  </div>
-                  <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
-                    <span class="hero-card-tag tag-internship">Internship</span>
-                    <span class="hero-card-tag tag-remote">Remote</span>
-                    <span class="skill-tag">React.js</span>
-                    <span class="skill-tag">Node.js</span>
-                  </div>
-                </div>
-                <div class="hero-floating-card">
-                  <div class="hero-card-header">
-                    <div class="hero-card-icon feature-icon-2">📊</div>
-                    <div>
-                      <div style="font-size:0.76rem;color:var(--text-4);margin-bottom:0.15rem">Analytics Hub</div>
-                      <div style="font-weight:600;font-size:0.92rem;color:var(--text)">Data Science Project</div>
-                    </div>
-                    <span class="match-pill">88% match</span>
-                  </div>
-                  <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
-                    <span class="hero-card-tag tag-project">Project</span>
-                    <span class="hero-card-tag tag-hybrid">Hybrid</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">ML</span>
-                  </div>
-                </div>
-                <div class="hero-floating-card">
-                  <div class="hero-card-header">
-                    <div class="hero-card-icon feature-icon-3">🎨</div>
-                    <div>
-                      <div style="font-size:0.76rem;color:var(--text-4);margin-bottom:0.15rem">CreativeStudio</div>
-                      <div style="font-weight:600;font-size:0.92rem;color:var(--text)">UI/UX Design Internship</div>
-                    </div>
-                    <span class="match-pill">82% match</span>
-                  </div>
-                  <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
-                    <span class="hero-card-tag tag-internship">Internship</span>
-                    <span class="hero-card-tag tag-onsite">On-site</span>
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">Adobe XD</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </main>
 
-      <!-- FEATURES -->
-      <section class="section" style="background:var(--bg-alt)">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-badge">What you get</div>
-            <h2 class="section-title">Built for how students actually work</h2>
-            <p class="section-desc">Every feature was designed around a real student need — from first browse to first day.</p>
-          </div>
-          <div class="features-grid">
-            <div class="feature-card"><div class="feature-icon feature-icon-1">🎯</div><div class="feature-title">Skill-based matching</div><div class="feature-desc">Add your skills once. Get a ranked list of opportunities that actually fit.</div></div>
-            <div class="feature-card"><div class="feature-icon feature-icon-2">🏢</div><div class="feature-title">Trusted organizations</div><div class="feature-desc">Work with companies and institutes that have been verified.</div></div>
-            <div class="feature-card"><div class="feature-icon feature-icon-3">📋</div><div class="feature-title">5 opportunity types</div><div class="feature-desc">Internships, projects, freelance, part-time, and research.</div></div>
-            <div class="feature-card"><div class="feature-icon feature-icon-4">📬</div><div class="feature-title">One-profile applying</div><div class="feature-desc">Fill your profile once. Apply to any opportunity easily.</div></div>
-            <div class="feature-card"><div class="feature-icon feature-icon-5">📈</div><div class="feature-title">Application tracking</div><div class="feature-desc">See every application you've sent and its current status.</div></div>
-            <div class="feature-card"><div class="feature-icon feature-icon-6">🌐</div><div class="feature-title">Remote & hybrid roles</div><div class="feature-desc">Filter by work mode. Remote, hybrid, on-site.</div></div>
-          </div>
-        </div>
-      </section>
+        <!-- Footer -->
+        <div id="footer"></div>
 
-      <!-- HOW IT WORKS -->
-      <section class="section" style="border-top:1px solid var(--border)">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-badge">How it works</div>
-            <h2 class="section-title">From sign-up to first day in three steps</h2>
-          </div>
-          <div class="steps-grid">
-            <div class="step-card"><div class="step-number">1</div><div class="step-title">Build your profile</div><div class="step-desc">Add your skills, education, and what you're looking for.</div></div>
-            <div class="step-card"><div class="step-number">2</div><div class="step-title">Browse or get matched</div><div class="step-desc">Use filters to explore, or check your personal match list.</div></div>
-            <div class="step-card"><div class="step-number">3</div><div class="step-title">Apply and track</div><div class="step-desc">Send your application with a cover note. Watch the status update.</div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- LATEST OPPORTUNITIES -->
-      <section class="section" style="background:var(--bg-alt);border-top:1px solid var(--border)">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-badge">Recently posted</div>
-            <h2 class="section-title">Latest openings</h2>
-            <p class="section-desc">Freshly posted internships and projects from active organizations</p>
-          </div>
-          <div class="opportunities-grid" id="latestOpportunities"><div class="loading-spinner"><div class="spinner"></div></div></div>
-          <div style="text-align:center;margin-top:2rem">
-            <button class="btn btn-outline btn-lg" onclick="window.location.href='/opportunities.html'">View all opportunities</button>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-  
-  <!-- Footer -->
-  <div id="footer"></div>
-  
-  <script src="/js/api.js"></script>
-  <script src="/js/components.js"></script>
-  <script src="/js/home.js"></script>
-</body>
+        <script src="/js/api.js"></script>
+        <script src="/js/components.js"></script>
+        <script src="/js/home.js"></script>
+    </body>
 </html>
